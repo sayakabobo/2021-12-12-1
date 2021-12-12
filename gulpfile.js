@@ -6,6 +6,7 @@ const dartSass = require("gulp-dart-sass");
 const autoprefixer = require("gulp-autoprefixer"); // ベンダープレフィックス付与
 const sourcemaps = require("gulp-sourcemaps"); // ソースマップ出力
 const cached = require("gulp-cached"); // ファイルキャッシュ
+const cleancss = require("gulp-clean-css");
 // const connect = require("gulp-connect");
 const browserSync = require("browser-sync").create();
 
@@ -45,6 +46,7 @@ function scss() {
         cascade: true,
       })
     )
+    .pipe(cleancss())
     .pipe(sourcemaps.write("/maps"))
     .pipe(gulp.dest(paths.scss.dest))
     .pipe(debug({ title: "scss dest:" }));
